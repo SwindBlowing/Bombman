@@ -31,3 +31,8 @@ void MyPushButton::changeBackPic()
     this->setIcon(pix);
     this->setIconSize(QSize(pix.width(), pix.height()));
 }
+
+void MyPushButton::changePicPos(double p)
+{
+    this->move(this->pos().x(), this->pos().y() + p * dy);
+}

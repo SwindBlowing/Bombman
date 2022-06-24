@@ -11,11 +11,13 @@ public:
     MyPushButton(QString normalImg, QString pressImg = "");
     void changePic();
     void changeBackPic();
+    void changePicPos(double p);
 
 private:
     QString normalImgPath;
     QString pressImgPath;
-
+    bool flag = 0;
+    double dy = 5;
 signals:
 
 };

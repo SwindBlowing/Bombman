@@ -7,6 +7,7 @@
 #include "givememoney.h"
 
 #include <QSoundEffect>>
+#include <QTimer>
 
 void BeginScene::playSound()
 {
@@ -47,9 +48,15 @@ void BeginScene::loadScene(GameScene *gameScene)
     startBtn->setParent(this);
     startBtn->move(this->width() / 2 - 108, this->height() / 2 - 30);
     connect(startBtn, &MyPushButton::clicked, [=](){
-        startSound->stop();
-        emit this->gameStart();
-        startBtn->changePic();
+        startBtn->changePicPos(1);
+        QTimer::singleShot(80, this, [=](){
+            startBtn->changePicPos(-1);
+        });
+        QTimer::singleShot(150, this, [=](){
+            startSound->stop();
+            emit this->gameStart();
+            startBtn->changePic();
+        });
     });
 
     auto intro = new Introduction();
@@ -68,22 +75,40 @@ void BeginScene::loadScene(GameScene *gameScene)
     helpBtn->setParent(this);
     helpBtn->move(this->width() / 2 - 108, this->height() / 2 - 30 + 90);
     connect(helpBtn, &MyPushButton::clicked, [=](){
-        this->close();
-        intro->show();
+        helpBtn->changePicPos(1);
+        QTimer::singleShot(80, this, [=](){
+            helpBtn->changePicPos(-1);
+        });
+        QTimer::singleShot(150, this, [=](){
+            this->close();
+            intro->show();
+        });
     });
 
     auto quitBtn = new MyPushButton(QString(":/Image/quitGame.png"));
     quitBtn->setParent(this);
     quitBtn->move(this->width() / 2 - 108, this->height() / 2 - 30 + 180);
     connect(quitBtn, &MyPushButton::clicked, [=](){
-        this->close();
+        quitBtn->changePicPos(1);
+        QTimer::singleShot(80, this, [=](){
+            quitBtn->changePicPos(-1);
+        });
+        QTimer::singleShot(150, this, [=](){
+            this->close();
+        });
     });
 
     auto moneyBtn = new MyPushButton(QString(":/Image/moneyBtn.png"));
     moneyBtn->setParent(this);
     moneyBtn->move(this->width() / 2 + 220, this->height() / 2 - 30 + 90 + 70);
     connect(moneyBtn, &MyPushButton::clicked, [=](){
-        this->close();
-        money->show();
+        moneyBtn->changePicPos(1);
+        QTimer::singleShot(80, this, [=](){
+            moneyBtn->changePicPos(-1);
+        });
+        QTimer::singleShot(150, this, [=](){
+            this->close();
+            money->show();
+        });
     });
 }

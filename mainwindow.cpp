@@ -13,6 +13,7 @@
 #include <QList>
 #include <mypushbutton.h>
 #include <beginscene.h>
+#include <QTimer>
 
 #include "./ui_mainwindow.h"
 
@@ -183,31 +184,43 @@ MainWindow::MainWindow(QWidget *parent)
   pauseBtn->setParent(this);
   pauseBtn->move(820, 460);
   connect(pauseBtn, &QPushButton::clicked, [=](){
-      if (gameScene->isOvered()) ;
-      else if (!isStoped) {
-          gameScene->pause();
-          isStoped = 1;
-          pauseBtn->changePic();
-      }
-      else {
-          gameScene->restart();
-          isStoped = 0;
-          pauseBtn->changeBackPic();
-      }
+      pauseBtn->changePicPos(1);
+      QTimer::singleShot(80, this, [=](){
+          pauseBtn->changePicPos(-1);
+      });
+      QTimer::singleShot(150, this, [=](){
+          if (gameScene->isOvered()) ;
+          else if (!isStoped) {
+              gameScene->pause();
+              isStoped = 1;
+              pauseBtn->changePic();
+          }
+          else {
+              gameScene->restart();
+              isStoped = 0;
+              pauseBtn->changeBackPic();
+          }
+      });
   });
 
   auto backBtn = new MyPushButton(QString(":/Image/return.png"));
   backBtn->setParent(this);
   backBtn->move(970, 460);
   connect(backBtn, &QPushButton::clicked, [=](){
-      playSound->stop();
-      pauseBtn->changePic();
-      if (!gameScene->isOvered())
-          gameScene->pause();
-      isStoped = 1;
-      this->hide();
-      beginScene->show();
-      beginScene->playSound();
+      backBtn->changePicPos(1);
+      QTimer::singleShot(80, this, [=](){
+          backBtn->changePicPos(-1);
+      });
+      QTimer::singleShot(150, this, [=](){
+          playSound->stop();
+          pauseBtn->changePic();
+          if (!gameScene->isOvered())
+              gameScene->pause();
+          isStoped = 1;
+          this->hide();
+          beginScene->show();
+          beginScene->playSound();
+      });
   });
 }
 

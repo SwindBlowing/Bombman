@@ -3,6 +3,7 @@
 #include <QGraphicsView>
 #include <transformbuilder.h>
 #include <mypushbutton.h>
+#include <QTimer>
 
 GiveMeMoney::GiveMeMoney(QWidget *parent)
     : QMainWindow{parent}
@@ -33,6 +34,12 @@ void GiveMeMoney::loadScene(GameScene *gameScene)
     backBtn->setParent(this);
     backBtn->move(670, 528);
     connect(backBtn, &QPushButton::clicked, [=](){
-        emit this->hasReturned();
+        backBtn->changePicPos(1);
+        QTimer::singleShot(80, this, [=](){
+            backBtn->changePicPos(-1);
+        });
+        QTimer::singleShot(150, this, [=](){
+            emit this->hasReturned();
+        });
     });
 }
