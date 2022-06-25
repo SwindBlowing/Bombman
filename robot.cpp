@@ -60,10 +60,11 @@ void Robot::onUpdate(float deltaTime)
 {
     extern MapOperator *opt;
     player->updateTransform();
-    robotPutBomb();
+    //robotPutBomb();
     if (!this->gameObject->getComponent<Physics>()->isMoving()) {
-        robotMove();
         QPoint enemy = opt->getEnemy(player->getX(), player->getY());
         nextStep = opt->shortestPath(player->getX(), player->getY(), enemy.x(), enemy.y());
+        robotPutBomb();
+        robotMove();
     }
 }

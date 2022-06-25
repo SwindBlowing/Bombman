@@ -212,6 +212,8 @@ short MapOperator::getVal(int x, int y, int id)
                 val += (5 - k) * 25;
         }
     }
+    for (int k = 0; k < 4; k++)
+        if (check(x + dx[k], y + dy[k]) && M[x + dx[k]][y + dy[k]]->getType() == 1) val -= 1;
     return val;
 }
 
