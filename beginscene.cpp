@@ -42,6 +42,7 @@ void BeginScene::loadScene(GameScene *gameScene)
 
     startSound = new QSoundEffect(this);
     startSound->setSource(QUrl::fromLocalFile(QString(":/new/Sound/Begin.wav")));
+    startSound->setVolume(0.2);
     playSound();
 
     auto startBtn = new MyPushButton(QString(":/Image/startGame.png"), QString(":/Image/continue_game.png"));

@@ -198,6 +198,7 @@ void GameScene::gameOver()
         transform->setPos(QPoint(300, 80));
         endSound->setSource(QUrl::fromLocalFile(QString(":/new/Sound/Balance.wav")));
     }
+    endSound->setVolume(0.2);
     endSound->play();
     transform->setZValue(11);
     addItem(transform);

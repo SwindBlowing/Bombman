@@ -291,6 +291,7 @@ void MapOperator::playDeadSound()
 {
     auto deadSound = new QSoundEffect(this);
     deadSound->setSource(QUrl::fromLocalFile(QString(":/new/Sound/Dead.wav")));
+    deadSound->setVolume(0.2);
     deadSound->play();
 }
 

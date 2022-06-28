@@ -157,6 +157,7 @@ MainWindow::MainWindow(QWidget *parent)
 
   playSound = new QSoundEffect(this);
   playSound->setSource(QUrl::fromLocalFile(QString(":/new/Sound/Play.wav")));
+  playSound->setVolume(0.2);
 
   loadScene(gameScene);
   gameScene->pause();

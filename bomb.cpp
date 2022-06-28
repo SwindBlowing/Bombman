@@ -27,6 +27,7 @@ void Bomb::bombing()
 {
     auto bombSound = new QSoundEffect(this);
     bombSound->setSource(QUrl::fromLocalFile(QString(":/new/Sound/Bombing.wav")));
+    bombSound->setVolume(0.2);
     bombSound->play();
     int nowx = transform->x() / 40 + 1, nowy = transform->y() / 40 + 1;
     transform->setImage(":/Image/GroundType1.png");
