@@ -45,7 +45,7 @@ private:
     ImageTransform *transform = nullptr;
     short id = 0;
     short towards = 0;
-    float speed = 90;
+    float speed = 100;
     short power = 1;
     short putLimit = 1;
     short canPushBomb = 0;

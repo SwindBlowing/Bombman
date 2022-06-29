@@ -9,7 +9,7 @@ GiveMeMoney::GiveMeMoney(QWidget *parent)
     : QMainWindow{parent}
 {
     this->setFixedSize(800, 600);
-    this->setWindowTitle("说明");
+    this->setWindowTitle("打赏");
     this->setWindowIcon(QPixmap(":/Image/icon.png"));
     gameScene = new GameScene(0);
     gameScene->setParent(this);

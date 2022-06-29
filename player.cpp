@@ -153,7 +153,7 @@ void Player::checkProp()
 void Player::getBenefit(int type)
 {
     if (type == 1)
-        speed += 90;
+        speed += 50;
     if (type == 2)
         power++;
     if (type == 3)
@@ -172,7 +172,7 @@ void Player::getBenefit(int type)
 void Player::finishBenefit(int type)
 {
     if (type == 1)
-        speed -= 90;
+        speed -= 50;
     if (type == 2)
         power--;
     if (type == 3)
